@@ -7,6 +7,7 @@ import AdminDashboard from './pages/admin/Dashboard'
 import LoginPage from './pages/auth/Login'
 import RegisterPage from './pages/auth/Register'
 import OAuthRedirect from './pages/auth/OAuthRedirect'
+import ItemDetail from './pages/public/ItemDetail'
 import ProtectedRoute from './components/layout/ProtectedRoute'
 import { fetchMe } from './features/auth/authSlice'
 import type { AppDispatch } from './app/store'
@@ -33,6 +34,7 @@ const App: React.FC = () => {
         <main className="flex-1 flex flex-col w-full relative z-0">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/items/:id" element={<ItemDetail />} />
             <Route path="/auth/login" element={<LoginPage />} />
             <Route path="/auth/register" element={<RegisterPage />} />
             <Route path="/oauth-redirect" element={<OAuthRedirect />} />
