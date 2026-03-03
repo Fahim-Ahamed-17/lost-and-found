@@ -57,7 +57,7 @@ const RegisterPage: React.FC = () => {
             <input
               type="text"
               {...register('name', { required: true })}
-              className="w-full px-4 py-2.5 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none"
+              className="w-full px-4 py-2.5 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
               placeholder="John Doe"
             />
           </div>
@@ -68,7 +68,7 @@ const RegisterPage: React.FC = () => {
             <input
               type="email"
               {...register('email', { required: true })}
-              className="w-full px-4 py-2.5 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none"
+              className="w-full px-4 py-2.5 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
               placeholder="student@university.edu"
             />
           </div>
@@ -79,7 +79,7 @@ const RegisterPage: React.FC = () => {
             <input
               type="password"
               {...register('password', { required: true })}
-              className="w-full px-4 py-2.5 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all outline-none"
+              className="w-full px-4 py-2.5 bg-white dark:bg-zinc-900 border border-slate-300 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none"
               placeholder="••••••••"
             />
           </div>

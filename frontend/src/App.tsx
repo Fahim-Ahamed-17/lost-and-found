@@ -20,7 +20,7 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <div className="relative min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-zinc-950 dark:text-zinc-50 overflow-hidden font-sans transition-colors duration-300">
+      <div className="relative min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-zinc-950 dark:text-zinc-50 overflow-hidden font-sans">
         {/* Ambient Top Left Gradient Blob */}
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-400/50 dark:bg-emerald-600/40 blur-[100px] pointer-events-none -z-10" />
         {/* Ambient Top Right Gradient Blob */}
