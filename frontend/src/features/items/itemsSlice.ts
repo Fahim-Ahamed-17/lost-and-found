@@ -1,15 +1,6 @@
-import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-
-export interface Item {
-  id: string
-  title: string
-  description: string
-  category: string
-  type: 'lost' | 'found'
-  location: string
-  status: 'open' | 'claimed' | 'closed'
-  createdAt: string
-}
+import { createSlice, createAsyncThunk, type PayloadAction } from '@reduxjs/toolkit'
+import type { Item } from '../../types/item'
+import axios from 'axios'
 
 export interface ItemsFilters {
   type?: 'lost' | 'found'
@@ -43,6 +34,29 @@ const initialState: ItemsState = {
   filters: {},
 }
 
+// Thunk to fetch items from the API
+export const fetchItems = createAsyncThunk(
+  'items/fetchItems',
+  async (filters: ItemsFilters, { rejectWithValue }) => {
+    try {
+      const params = new URLSearchParams()
+      Object.entries(filters).forEach(([key, value]) => {
+        if (value !== undefined) {
+          params.append(key, value.toString())
+        }
+      })
+
+      const response = await axios.get(`/api/items?${params.toString()}`, {
+        withCredentials: true
+      })
+
+      return response.data.data
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.error?.message || 'Failed to fetch items')
+    }
+  }
+)
+
 const itemsSlice = createSlice({
   name: 'items',
   initialState,
@@ -62,6 +76,24 @@ const itemsSlice = createSlice({
     setItemsFilters(state, action: PayloadAction<ItemsFilters>) {
       state.filters = { ...state.filters, ...action.payload }
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchItems.pending, (state) => {
+        state.loading = true
+        state.error = null
+      })
+      .addCase(fetchItems.fulfilled, (state, action) => {
+        state.loading = false
+        state.items = action.payload.items
+        state.totalPages = action.payload.totalPages
+        state.currentPage = action.payload.currentPage
+        state.count = action.payload.count
+      })
+      .addCase(fetchItems.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload as string
+      })
   },
 })
 
