@@ -145,6 +145,17 @@ const Home: React.FC = () => {
         filtered = filtered.filter(item => item.location.toLowerCase().includes(locQuery))
       }
 
+      if (filters.startDate) {
+        const start = new Date(filters.startDate)
+        filtered = filtered.filter(item => new Date(item.date) >= start)
+      }
+
+      if (filters.endDate) {
+        const end = new Date(filters.endDate)
+        end.setHours(23, 59, 59, 999)
+        filtered = filtered.filter(item => new Date(item.date) <= end)
+      }
+
       // Pagination setup
       const page = filters.page || 1
       const totalFiltered = filtered.length

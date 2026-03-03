@@ -53,7 +53,9 @@ const FilterSidebar: React.FC = () => {
             category: undefined,
             location: undefined,
             search: undefined,
-            status: undefined
+            status: undefined,
+            startDate: undefined,
+            endDate: undefined
         }))
     }
 
@@ -148,6 +150,8 @@ const FilterSidebar: React.FC = () => {
                             <span className="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 tracking-wider">From</span>
                             <input
                                 type="date"
+                                value={filters.startDate || ''}
+                                onChange={(e) => dispatch(setItemsFilters({ startDate: e.target.value || undefined }))}
                                 className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all text-slate-600 dark:text-slate-300"
                             />
                         </div>
@@ -155,6 +159,8 @@ const FilterSidebar: React.FC = () => {
                             <span className="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 tracking-wider">To</span>
                             <input
                                 type="date"
+                                value={filters.endDate || ''}
+                                onChange={(e) => dispatch(setItemsFilters({ endDate: e.target.value || undefined }))}
                                 className="w-full px-3 py-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/50 outline-none transition-all text-slate-600 dark:text-slate-300"
                             />
                         </div>
